@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import { BrowserRouter as Router, Switch} from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
+/*------ Pages-----*/
+import Home from './component/Home';
+import Second from './component/Second';
+import ScrollToTopRoute from './ScrollToTopRoute';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  render(){
+    return(
+        <Router>
+           <Switch>
+             <ScrollToTopRoute exact={true} path={'/'} component={Home} />
+             <ScrollToTopRoute exact={true} path={'/second'} component={Second} />
+             <Route path='/amazon' component={()=>{
+               window.location.href="https://amazon.com";
+               return null;
+             }} />
+           </Switch>
+        </Router>
+    );
+  }
 }
 
 export default App;
+
